@@ -5,7 +5,6 @@
 <!-- toc -->
 
 * [About this project](#about-this-project)
-* [Install](#install)
 * [Contributing](#contributing)
 * [Author](#author)
 * [License](#license)
@@ -59,8 +58,6 @@ and you'll get back the following description
 > Returns the Sum of Sales for the current selection, but only for those customers that have bought the product "Shoe".
 
 This semantic explanation of a Set Analysis wizard can then either be used just to "decode" an existing statement or used in a tool like the Set Analysis Wizard.
-
-## Install
 
 ## Contributing
 
