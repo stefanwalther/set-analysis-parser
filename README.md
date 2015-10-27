@@ -1,6 +1,6 @@
 # set-analysis-parser
 
-> Parse for Set Analaysis expressions in Qlik's products..
+> Parser for Set Analaysis expressions in Qlik's products..
 
 <!-- toc -->
 

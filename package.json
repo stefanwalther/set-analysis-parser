@@ -1,6 +1,6 @@
 {
   "name": "set-analysis-parser",
-  "description": "Parse for Set Analaysis expressions in Qlik's products..",
+  "description": "Parser for Set Analaysis expressions in Qlik's products..",
   "version": "0.1.0",
   "homepage": "https://github.com/stefanwalther/set-analysis-parser",
   "author": {
