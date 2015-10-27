@@ -1,6 +1,6 @@
 # set-analysis-parser
 
-> Parser for Set Analaysis expressions in Qlik's products..
+> BNF Parser for Set Analysis expressions in QlikView and Qlik Sense.
 
 <!-- toc -->
 
