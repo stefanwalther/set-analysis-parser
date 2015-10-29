@@ -1,7 +1,9 @@
 # -------------------------------------------------------------------
 # Expressions to be included in unit tests.
 # ~
-# Add an expression here, mark it with x if tests should be skipped.
+# - Add an expression per line
+# - Mark the line with a "x" if tests should be skipped (positive tests).
+# - Mark the line with an "f" if the test should fail (negative tests).
 # -------------------------------------------------------------------
 SUM(bar)
 Sum(bar)
@@ -28,7 +30,7 @@ Sum({$5}Sales)
 Sum({$10}Sales)
 Sum([Sales])
 Sum(UnitPrice*Quantity)
-x Sum([UnitPrice]*Quantity)
-x Sum([UnitPrice*Quantity])
-x Sum([UnitPrice]*[Quantity])
+Sum([UnitPrice]*Quantity)
+f Sum([UnitPrice*Quantity])
+Sum([UnitPrice]*[Quantity])
 Sum({$}ItemsSold*ItemPrice)
