@@ -38,8 +38,8 @@ field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 \s+                             /* skip whitespace */
 {aggr_types}                    return 'aggr_type';
 //{set_operators}                 return 'set_operator';
-// https://regex101.com/r/dF4hX4/6
-\$[1-9]|\$_[1-9]|^\$|[1][-]\$|[1]{1}|^[1]_\$$|[\$]      	return 'set_identifier';
+// https://regex101.com/r/dF4hX4/9
+\$\d+|\$_\d+|^\$|[1][-]\$|[1]{1}|^[1]_\$$|[\$]      		return 'set_identifier';
 {field_selection_operators}     							return 'field_selection_operator';
 \w+                             							return "field_expression";
 "{"                             							return 'curly_open';
