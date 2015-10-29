@@ -76,15 +76,18 @@ definition
     ;
 
 field_expression
-	// Sales
+	  // Sales
 	: field_inner_expression
 		{ $$ = $1;}
-	// [Sales]
+	  // [Sales]
 	| square_brackets_start field_inner_expression square_brackets_end
 		{ $$ = $1 + $2 + $3; }
-	// Units*Price
+	  // Units*Price
 	| field_inner_expression operator field_inner_expression
 		{ $$ = $1 + $2 + $3; }
+	|  // [Units]*Price
+		square_brackets_start field_inner_expression square_brackets_end operator field_expression
+		{ $$ = $1 + $2 + $3 + $4 + $5; }
 	;
 
 // set_operator ::= + | - | * | /
