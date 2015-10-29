@@ -70,7 +70,7 @@ element ::= field_value | " search_mask "
 First install dependencies:
 `npm install`
 
-Then run the tests:
+Then run the Mocha tests:
 `npm test`
 
 ## Contributing

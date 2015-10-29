@@ -1,5 +1,5 @@
 First install dependencies:
 `npm install`
 
-Then run the tests:
+Then run the Mocha tests:
 `npm test`
