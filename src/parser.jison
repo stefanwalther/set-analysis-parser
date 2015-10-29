@@ -29,10 +29,6 @@ https://regex101.com/
 %options flex case-insensitive
 
 aggr_types                      ("Sum"|"Min"|"Max"|"Only"|"Mode"|"FirstSortedValue"|"MinString"|"MaxString"|"Concat"| "Count"|"NumericCount"|"TextCount"|"NullCount"|"MissingCount"|"Avg"|"stdev"|"median"|"fractile"|"skew"|"kurtosis"|"correl"|"sterr"|"steyx"|"linest_m"|"linest_b"|"linest_r2"|"linest_sem"|"linest_seb"|"linest_sey"|"linest_df"|"linest_f"|"linest_ssreg"|"linest_ssresid")
-
-// Not used anymore, can probably be safely deleted
-//set_identifiers                 (\$[1-9]|\$_[1-9]|\$|[1])
-
 operators                   	("+"|"-"|"*"|"/")
 field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 
@@ -79,7 +75,6 @@ definition
         {$$ = $1 + $2 + $3 + $4 + $5;}
     ;
 
-//Todo: handle square brackets
 field_expression
 	// Sales
 	: field_inner_expression
