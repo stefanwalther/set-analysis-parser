@@ -1,8 +1,8 @@
-**Why?**
+### Why?
 The backbone of the new Set Analysis Wizard will be a parser which is able to parse and therefore "decode" existing Set Analysis statements into a structure which can be used in programmatic way.
 This is not only beneficial for the Set Analysis Wizard but instead this parser could be used in many other projects.
 
-**Semantic Sugar Layer**
+### Semantic Sugar Layer
 On top of that it is the goal to return a descriptive explanation of a Set Analysis statement.
 
 **For example:**
@@ -17,7 +17,7 @@ and you'll get back the following description
 > Returns the Sum of Sales for the current selection, but only for those customers that have bought the product "Shoe".
 
 
-**The Parser**
+### The Parser
 I have chosen to use [Jison](http://zaach.github.io/jison/) to parse existing Set Analysis statements.
 
 If you have a look into the online documentation of Qlik Sense, you'll find the [BNF](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form) syntax for sets there:
