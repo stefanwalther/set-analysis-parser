@@ -1,5 +1,5 @@
 ### Why?
-The backbone of the new Set Analysis Wizard will be a parser which is able to parse and therefore "decode" existing Set Analysis statements into a structure which can be used in programmatic way.
+The backbone of the [new Set Analysis Wizard](https://github.com/stefanwalther/set-analysis-wizard) will be a parser which is able to parse and therefore "decode" existing Set Analysis statements into a structure which can be used in programmatic way.
 This is not only beneficial for the Set Analysis Wizard but instead this parser could be used in many other projects.
 
 ### Semantic Sugar Layer
