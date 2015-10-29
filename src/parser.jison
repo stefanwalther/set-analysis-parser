@@ -29,7 +29,10 @@ https://regex101.com/
 %options flex case-insensitive
 
 aggr_types                      ("Sum"|"Min"|"Max"|"Only"|"Mode"|"FirstSortedValue"|"MinString"|"MaxString"|"Concat"| "Count"|"NumericCount"|"TextCount"|"NullCount"|"MissingCount"|"Avg"|"stdev"|"median"|"fractile"|"skew"|"kurtosis"|"correl"|"sterr"|"steyx"|"linest_m"|"linest_b"|"linest_r2"|"linest_sem"|"linest_seb"|"linest_sey"|"linest_df"|"linest_f"|"linest_ssreg"|"linest_ssresid")
+
+// Not used anymore, can probably be safely deleted
 //set_identifiers                 (\$[1-9]|\$_[1-9]|\$|[1])
+
 //set_operators                   ("+"|"-"|"*"|"/")
 field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 
@@ -38,10 +41,15 @@ field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 \s+                             /* skip whitespace */
 {aggr_types}                    return 'aggr_type';
 //{set_operators}                 return 'set_operator';
+
+// set_identifier
 // https://regex101.com/r/dF4hX4/9
 \$\d+|\$_\d+|^\$|[1][-]\$|[1]{1}|^[1]_\$$|[\$]      		return 'set_identifier';
+
 {field_selection_operators}     							return 'field_selection_operator';
-\w+                             							return "field_expression";
+"["															return 'square_brackets_start';
+"]"															return 'square_brackets_end';
+\w+                             							return "field_inner_expression";
 "{"                             							return 'curly_open';
 "}"                             							return 'curly_close';
 "("                             							return 'par_open';
@@ -69,6 +77,14 @@ definition
     | aggr_type par_open set_expression field_expression par_close
         {$$ = $1 + $2 + $3 + $4 + $5;}
     ;
+
+//Todo: handle square brackets
+field_expression
+	: field_inner_expression
+		{ $$ = $1;}
+	| square_brackets_start field_inner_expression square_brackets_end
+		{ $$ = $1 + $2 + $3; }
+	;
 
 // set_operator ::= + | - | * | /
 set_operator
