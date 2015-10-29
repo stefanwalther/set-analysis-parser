@@ -33,7 +33,7 @@ aggr_types                      ("Sum"|"Min"|"Max"|"Only"|"Mode"|"FirstSortedVal
 // Not used anymore, can probably be safely deleted
 //set_identifiers                 (\$[1-9]|\$_[1-9]|\$|[1])
 
-//set_operators                   ("+"|"-"|"*"|"/")
+operators                   	("+"|"-"|"*"|"/")
 field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 
 %%
@@ -47,6 +47,7 @@ field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 \$\d+|\$_\d+|^\$|[1][-]\$|[1]{1}|^[1]_\$$|[\$]      		return 'set_identifier';
 
 {field_selection_operators}     							return 'field_selection_operator';
+{operators}													return 'operator';
 "["															return 'square_brackets_start';
 "]"															return 'square_brackets_end';
 \w+                             							return "field_inner_expression";
@@ -80,9 +81,14 @@ definition
 
 //Todo: handle square brackets
 field_expression
+	// Sales
 	: field_inner_expression
 		{ $$ = $1;}
+	// [Sales]
 	| square_brackets_start field_inner_expression square_brackets_end
+		{ $$ = $1 + $2 + $3; }
+	// Units*Price
+	| field_inner_expression operator field_inner_expression
 		{ $$ = $1 + $2 + $3; }
 	;
 
