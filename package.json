@@ -1,7 +1,7 @@
 {
   "name": "set-analysis-parser",
   "description": "BNF Parser for Set Analysis expressions in QlikView and Qlik Sense.",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/stefanwalther/set-analysis-parser",
   "author": {
     "name": "Stefan Walther",
@@ -48,5 +48,13 @@
     "sinon-chai": "^2.8.0",
     "verb": "git://github.com/verbose/verb"
   },
-  "keywords": []
+  "keywords": [
+    "qlik",
+    "qlikview",
+    "qliksense",
+    "qlik-sense",
+    "set-analysis",
+    "setanalysis",
+    "parser"
+  ]
 }
