@@ -5,10 +5,12 @@ http://stackoverflow.com/questions/24397160/jison-google-like-parser
 http://stackoverflow.com/questions/27056486/error-handling-in-jison
 http://stackoverflow.com/questions/26899381/jison-getting-parsed-token-instead-of-what-is-defined-in-grammar
 https://regex101.com/
+
+http://stackoverflow.com/questions/15801592/how-is-this-grammar-ambiguous
 */
 
 /*
- * definition ::= aggr_type ( set_expression field_expression )
+ * definition ::= aggr_type ( [ set_expression ] field_expression )
  *
  * From the documentation
  * set_expression ::= { set_entity { set_operator set_entity } }
@@ -38,59 +40,91 @@ field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 {aggr_types}                    return 'aggr_type';
 //{set_operators}                 return 'set_operator';
 
+// ******************************************************************
 // set_identifier
-// https://regex101.com/r/dF4hX4/9
+// ~~
+// See https://regex101.com/r/dF4hX4/9
+// ******************************************************************
 \$\d+|\$_\d+|^\$|[1][-]\$|[1]{1}|^[1]_\$$|[\$]      		return 'set_identifier';
 
 {field_selection_operators}     							return 'field_selection_operator';
 {operators}													return 'operator';
-"["															return 'square_brackets_start';
-"]"															return 'square_brackets_end';
-\w+                             							return "field_inner_expression";
-"{"                             							return 'curly_open';
-"}"                             							return 'curly_close';
-"("                             							return 'par_open';
-")"                             							return 'par_close';
+"["															return '[';
+"]"															return ']';
+#\w+                             							return 'field_inner_expression';
+\w+|d+														return 'field_inner_expression';
+"{"                             							return '{';
+"}"                             							return '}';
+"("                             							return '(';
+")"                             							return ')';
 "<"                             							return 'anglebr_open';
 ">"                             							return 'anglebr_close';
 /*[a-zA-Z0-9]+                    							return 'function_expression'*/
 <<EOF>>                         							return "EOF";
 /lex
 
+// ##################################################################
+// ##################################################################
+
+/* operator associations and precedence */
+
+%left '+' '-'
+%left '*' '/'
+%left '^'
+%left UMINUS
+
+// ##################################################################
+// ##################################################################
 
 %start start
 %% /* language grammar */
+
+
 
 start
     :  definition EOF
         {return $1;}
     ;
 
+// ******************************************************************
+// Root
+// ******************************************************************
 definition
-    // Sum(Sales)
-    : aggr_type par_open field_expression par_close
+
+      // Sum(Sales)
+    : aggr_type '(' field_expression ')'
         {$$ = $1 + $2 + $3 + $4;}
-    // Sum({..}Sales)
-    | aggr_type par_open set_expression field_expression par_close
+
+      // Sum({..}Sales)
+    | aggr_type '(' set_expression field_expression ')'
         {$$ = $1 + $2 + $3 + $4 + $5;}
     ;
 
+// ******************************************************************
+//
+// ******************************************************************
 field_expression
+
 	  // Sales
 	: field_inner_expression
 		{ $$ = $1;}
+
 	  // [Sales]
-	| square_brackets_start field_inner_expression square_brackets_end
+	| '[' field_inner_expression ']'
 		{ $$ = $1 + $2 + $3; }
+
 	  // Units*Price
-	| field_inner_expression operator field_inner_expression
+	| field_expression operator field_expression
 		{ $$ = $1 + $2 + $3; }
-	|  // [Units]*Price
-		square_brackets_start field_inner_expression square_brackets_end operator field_expression
+
+	|  // [Units]*Price or [Units]*Price-1
+		'[' field_expression ']' operator field_expression
 		{ $$ = $1 + $2 + $3 + $4 + $5; }
 	;
 
+// ******************************************************************
 // set_operator ::= + | - | * | /
+// ******************************************************************
 set_operator
     : '+'
         {$$ = $1;}
@@ -110,8 +144,8 @@ set_identifier
 */
 
 set_expression
-    // {..}
-    : curly_open set_entity curly_close
+      // {..}
+    : '{' set_entity '}'
         { $$ = '{' + $2 + '}';}
     ;
 
@@ -185,13 +219,3 @@ element
     : ''
     { $$ = $1; }
     ;
-
-
-
-
-
-
-
-
-
-
