@@ -17,7 +17,7 @@ var sourcemaps = require('gulp-sourcemaps');
 //gulp.task( 'default', gulp.series('del:tmp', 'copy:toTmp','transpile', 'less:each', 'copy:tmpToLocal') );
 
 gulp.task('default', function (  ) {
-	return gulp.src( './model/**/*.js' )
+	return gulp.src( './test/**/*.js' )
 			.pipe(sourcemaps.init())
 			.pipe(babel())
 			.pipe(sourcemaps.write('.'))
