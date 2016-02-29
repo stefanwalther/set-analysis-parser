@@ -43,9 +43,9 @@ field_selection_operators       ("="|"+="|"-="|"*="|"/=")
 // ******************************************************************
 // set_identifier
 // ~~
-// See https://regex101.com/r/dF4hX4/9
+// See https://regex101.com/r/dF4hX4/12
 // ******************************************************************
-\$\d+|\$_\d+|^\$|[1][-]\$|[1]{1}|^[1]_\$$|[\$]      		return 'set_identifier';
+(?!\{)([\$\d-_0-9<>]+)     									return 'set_identifier';
 
 {field_selection_operators}     							return 'field_selection_operator';
 {operators}													return 'operator';
