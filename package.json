@@ -1,16 +1,17 @@
 {
   "name": "set-analysis-parser",
-  "description": "BNF Parser for Set Analysis expressions in QlikView and Qlik Sense.",
   "version": "0.0.1",
+  "description": "BNF Parser for Set Analysis expressions in QlikView and Qlik Sense.",
+  "keywords": [
+    "parser",
+    "qlik",
+    "qlik-sense",
+    "qliksense",
+    "qlikview",
+    "set-analysis",
+    "setanalysis"
+  ],
   "homepage": "https://github.com/stefanwalther/set-analysis-parser",
-  "author": {
-    "name": "Stefan Walther",
-    "url": "http://qliksite.io"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/stefanwalther/set-analysis-parser.git"
-  },
   "bugs": {
     "url": "https://github.com/stefanwalther/set-analysis-parser/issues"
   },
@@ -18,21 +19,26 @@
     "type": "GNU General Public License",
     "url": "https://github.com/stefanwalther/set-analysis-wizard/blob/master/LICENSE"
   },
+  "author": {
+    "name": "Stefan Walther",
+    "url": "http://qliksite.io"
+  },
   "files": [
     "index.js"
   ],
   "main": "index.js",
-  "engines": {
-    "node": ">=0.10.0"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stefanwalther/set-analysis-parser.git"
   },
   "scripts": {
     "test": "mocha --require ./test/global.js --compilers js:babel/register"
   },
   "dependencies": {
-    "lodash": "^3.10.0",
-    "lex-parser": "^0.1.4",
     "ebnf-parser": "^0.1.10",
-    "jison": "^0.4.15"
+    "jison": "^0.4.15",
+    "lex-parser": "^0.1.4",
+    "lodash": "^3.10.0"
   },
   "devDependencies": {
     "babel": "^5.6.14",
@@ -48,13 +54,7 @@
     "sinon-chai": "^2.8.0",
     "verb": "git://github.com/verbose/verb"
   },
-  "keywords": [
-    "qlik",
-    "qlikview",
-    "qliksense",
-    "qlik-sense",
-    "set-analysis",
-    "setanalysis",
-    "parser"
-  ]
+  "engines": {
+    "node": ">=0.10.0"
+  }
 }
