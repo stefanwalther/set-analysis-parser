@@ -1,5 +1,7 @@
 # set-analysis-parser
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/stefanwalther/set-analysis-parser.svg?token=ffc06976c9cdde67406b9397ca4514dd652b6580c0dc778641af147c63ea1021&ts=1493846799176)](https://greenkeeper.io/)
+
 > BNF Parser for Set Analysis expressions in QlikView and Qlik Sense.
 
 <!-- toc -->
